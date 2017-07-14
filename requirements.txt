@@ -1,0 +1,12 @@
+numpy==1.12.1
+lmdb==0.92
+pyspider==0.3.8
+xmltodict==0.10.2
+pymongo==3.3.0
+tushare==0.8.2
+torch==0.1.12.post2
+torchvision==0.1.8
+pytesseract==0.1.6
+Pillow==4.2.1
+beautifulsoup4==4.6.0
+six==1.10.0
