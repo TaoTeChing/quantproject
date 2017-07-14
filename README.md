@@ -9,8 +9,8 @@ account:账户管理
 database:数据库管理   
 document:文档   
 model:模型库，现在已经实现验证码识别
-signal:信号中心
-spyder:爬虫中心
-strategy:策略中心
-test/image:测试文件
+signal:信号中心   
+spyder:爬虫中心    
+strategy:策略中心   
+test/image:测试文件   
 
