@@ -1,0 +1,12 @@
+{
+  "taskdb": "mongodb+taskdb://taskdb:taskdb@127.0.0.1:27017/taskdb",
+  "projectdb": "mongodb+projectdb://projectdb:projectdb@127.0.0.1:27017/projectdb",
+  "resultdb": "mongodb+resultdb://resultdb:resultdb@127.0.0.1:27017/resultdb",
+ 
+  "webui": {
+    "username": "mongo",
+    "password": "mongo12345",
+    "need-auth": true,
+    "port":10002
+  }
+}
