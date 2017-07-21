@@ -4,13 +4,17 @@
 Created on Fri Jul 14 14:26:40 2017
 database config
 @author: lywen
+use quant
+db.createUser({'user':'quant','pwd':'quant','roles':[{'role':'readWrite','db':'quant'}]})
 """
 def get_mongo_config():
     """获取mongo配置"""
-    user = 'resultdb'
-    password ='resultdb'
+    user = 'quant'
+    password ='quant'
     host='127.0.0.1'
     port=27017
-    db='resultdb'
+    db='quant'
     return user,password,host,port,db
+
+
 
