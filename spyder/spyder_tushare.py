@@ -275,13 +275,13 @@ class symbClassified(object):
         地域分类
         """
         area = ts.get_area_classified()
-        area = area[['code','c_name']]
+        area = area[['code','area']]
         area.columns = ['code','areaName']
         self.data = pd.merge(self.data,area,on=['code'],how='outer')
     
     def get_sme_classified(self):
         """中小板分类"""
-        sme = ts.get_area_classified()
+        sme = ts.get_sme_classified()
         
         sme['smeName'] = 1
         sme = sme[['code','smeName']]
@@ -292,7 +292,7 @@ class symbClassified(object):
         """
         创业板分类
         """
-        gem = ts.get_area_classified()
+        gem = ts.get_gem_classified()
         
         gem['gemName'] = 1
         gem = gem[['code','gemName']]
@@ -360,7 +360,7 @@ class symbClassified(object):
         """
         suspended = ts.get_suspended()
         suspended['suspendedName'] = 1
-        suspended = suspended[['code','suspendeddName','oDate','tDate']]
+        suspended = suspended[['code','suspendedName','oDate','tDate']]
         
         suspended.columns = ['code','suspendedName','suspendedODate','suspendedTDate']
         self.data = pd.merge(self.data,suspended,on=['code'],how='outer')  
