@@ -215,7 +215,7 @@ class symbClassified(object):
     终止上市股票列表
     暂停上市股票列表
     """
-    def __init__(self):
+    def __init__(self,save=True):
         """
         """
         self.columns = ['code',
@@ -247,7 +247,9 @@ class symbClassified(object):
         now = dt.datetime.now()
         self.data['datatime']  =  now.strftime('%Y-%m-%d')
         self.data['datatimestramp']  =  now.strftime('%H:%M:%S')
-        
+        indexlist = ['code','datatime']##数据库索引
+        tableName = 'symbClassified'  
+        database(self.data,indexlist,tableName,save)
         
     def get_industry_classified(self):
         """
@@ -258,16 +260,29 @@ class symbClassified(object):
         industry = ts.get_industry_classified()
         industry = industry[['code','name','c_name']]
         industry.columns = ['code','name','industryName']
+        ##合并多个行业分类
+        industryDict = {}
+        for line in industry.to_dict('record'):
+            if industryDict.get(line['code']) is None:
+                industryDict[line['code']] = []
+            industryDict[line['code']].append(line['industryName'])
+        industry = pd.DataFrame(industryDict.items(),columns=['code','industryName'])
         if self.data is None:
             self.data = industry
         
     def get_concept_classified(self):
         """
-        概念分类分类
+        概念分类分类,合并一支股票属于多个概念股
         """
         concept = ts.get_concept_classified()
         concept = concept[['code','c_name']]
         concept.columns = ['code','conceptName']
+        concepDict = {}
+        for line in concept.to_dict('record'):
+            if concepDict.get(line['code']) is None:
+                concepDict[line['code']] = []
+            concepDict[line['code']].append(line['conceptName'])
+        concept = pd.DataFrame(concepDict.items(),columns=['code','conceptName'])
         self.data = pd.merge(self.data,concept,on=['code'],how='outer')
         
     def get_area_classified(self):
@@ -369,11 +384,15 @@ class symbClassified(object):
         
     
 if __name__== '__main__':
+    """
     
+    """
     #mdm = SymbolMdm()##股票基础数据
     #companyRepor(2017,2,updateAll=True)##公司业绩报告
-    ##HistData()##历史数据
-    pass
+    #HistData()##历史数据
+    #symbClassified()##股票行业分类
+    
+    
     
     
 
